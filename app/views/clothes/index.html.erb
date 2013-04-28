@@ -1,0 +1,28 @@
+<h1>My clothes</h1>
+
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Picture</th>
+    <th>Notes</th>
+    <th>Attributes</th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @clothes.each do |clothe| %>
+  <tr>
+    <td><%= clothe.name %></td>
+    <td><%= image_tag(clothe.picture_url, :width => 75) if clothe.picture.present? %></td>
+    <td><%= clothe.desc %></td>
+    <td></td>
+    <td><%= link_to 'Show', clothe %></td>
+    <td><%= link_to 'Edit', edit_clothe_path(clothe) %></td>
+    <td><%= link_to 'Delete', clothe, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Clothe', new_clothe_path %>

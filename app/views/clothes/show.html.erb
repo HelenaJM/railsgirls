@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+<table border="1">
+  <tr>
+  <th>Name</th>
+  <th>Description</th>
+  <th>Picture</th>
+  </tr>
+  <tr>
+  <td> <%= @clothe.name %></td>
+  <td><%= @clothe.desc %></td>
+  <td><%= image_tag(@clothe.picture_url, :width => 150) if @clothe.picture.present? %></td>
+  </tr>
+</table>
+
+<p>
+  <h3>Comments</h3>
+<% @clothe.comments.each do |comment| %>
+  <div>
+    <strong><%= comment.user_name %></strong>
+    <br />
+    <p><%= comment.body %><p>
+     <p>
+      <%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %>
+    </p>
+  </div>
+<% end %>
+<%= render 'comments/form' %>
+</p>
+
+<%= link_to 'Edit', edit_clothe_path(@clothe) %> |
+<%= link_to 'Back', clothes_path %>
